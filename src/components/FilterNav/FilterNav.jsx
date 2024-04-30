@@ -8,8 +8,6 @@ import { AiFillAppstore } from "react-icons/ai";
 
 import Modal from "react-modal";
 import React, { useState } from "react";
-import LineCards from "../LineCards/LineCards";
-import BlokCards from "../BlokCards/BlokCards";
 
 const FilterNav = () => {
   const [modal, setModal] = useState(false);
@@ -200,14 +198,6 @@ const FilterNav = () => {
             </div>
           </div>
         </Modal>
-      </div>
-
-      <div hidden={index !== 0}>
-        <LineCards />
-      </div>
-
-      <div hidden={index !== 1}>
-        <BlokCards />
       </div>
     </div>
   );

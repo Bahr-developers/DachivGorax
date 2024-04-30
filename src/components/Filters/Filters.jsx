@@ -151,7 +151,10 @@ const Filters = () => {
               />
             </div>
             <div className="fbox3-three">
-              <label className="filter-label" htmlFor="fusd">Сортировать по</label><br />
+              <label className="filter-label" htmlFor="fusd">
+                Сортировать по
+              </label>
+              <br />
               <select className="fbox3-select" name="" id="">
                 <option value="usd">Цены</option>
               </select>

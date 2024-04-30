@@ -56,7 +56,7 @@ const Favorite = () => {
           ) : (
             <>
               <h2 className="favorite-header">Избранные</h2>
-              <p className="text-danger">You have this page home for empte</p>
+              <p className="text-danger">You have this page home for empty</p>
             </>
           )}
         </div>

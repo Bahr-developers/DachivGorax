@@ -1,7 +1,6 @@
 import "./Header.css";
 import Search from "../../assets/images/search.svg";
 import MiniSearch from "../../assets/images/mini-search.svg";
-import bgImg from "../../assets/images/bg-img.png";
 import { Link } from "react-router-dom";
 import {
   Navigation,
