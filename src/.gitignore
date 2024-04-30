@@ -4,6 +4,7 @@
 # Node.js
 node_modules/
 
+
 # Build artifacts
 /build/
 /dist/
@@ -41,3 +42,4 @@ yarn-error.log*
 # Miscellaneous
 *.swp
 Thumbs.db
+
