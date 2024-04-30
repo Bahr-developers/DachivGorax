@@ -69,8 +69,8 @@
 }
 .dacha-card-like {
   position: absolute;
-  top: 262px;
-  right: 28px;
+  top: 255px;
+  right: 18px;
   margin: 0;
   padding: 16px 12.04px 14.53px 12px;
   border-radius: 50%;
@@ -110,11 +110,7 @@
 }
 
 .dacha-card-btn {
-  width: 220px;
-  position: relative;
   text-decoration: none;
-  left: 16%;
-  margin: 19px 0 0 0;
   padding: 10px 61px;
   font-weight: 600;
   font-size: 18px;
@@ -128,6 +124,7 @@
 .dacha-card-btn:hover {
   color: #ffffff;
 }
+
 .main-img-dacha {
   border-radius: 15px 15px 5px 5px;
 }
