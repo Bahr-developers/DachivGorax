@@ -22,7 +22,7 @@ import { BsTelephoneFill } from "react-icons/bs";
 
 Modal.setAppElement("#root");
 
-const Navbar = (props) => {
+const Navbar = () => {
   const userImg = ALL_DATA.useSingleUser()?.data?.image;
   const navigate = useNavigate();
 
@@ -50,13 +50,8 @@ const Navbar = (props) => {
   const registered = useRef(null);
   const signIn = useRef(null);
 
-  const handleCottageType = async (e) => {
-    const type = await cottageUtils.getCottageType(e.target.value);
-  };
-
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
-
   const logoutBtn = () => {
     signIn.current.classList.remove("d-none");
     registered.current.classList.add("d-none");
@@ -97,22 +92,6 @@ const Navbar = (props) => {
               <img src={Close} width="18.62" height="18.62" alt="close" />
             </button>
             <div className="modal-nav-menu">
-              <select
-                onChange={handleCottageType}
-                className="modal-nav-select-one"
-                name="dacha"
-                id="dacha"
-              >
-                {cottageType.data?.length &&
-                  cottageType.data.map((e) => {
-                    return (
-                      <option key={e.id} value={e.id}>
-                        {e.name}
-                      </option>
-                    );
-                  })}
-              </select>
-
               <Link to="tel:+9981002314" className="modal-nav-contact d-black ">
                 {NavLeng[languageChange].connection}
               </Link>
@@ -179,72 +158,59 @@ const Navbar = (props) => {
           </div>
           {/*  hamburger menu end */}
 
-          <Link to="/">
-            <img
-              className="logo"
-              src={Logo}
-              width="65"
-              height="64"
-              alt="logo"
-            />
-          </Link>
-          <div className="navs align-items-center">
-            <select
-              className="select data_type_select fs-5"
-              name="dacha"
-              id="dacha"
-              onChange={handleCottageType}
-            >
-              {cottageType.data?.length &&
-                cottageType.data.map((e) => {
-                  return (
-                    <option key={e.id} value={e.id}>
-                      {e.name}
-                    </option>
-                  );
-                })}
-            </select>
-
-            <Link to="tel:+9981002314" className="contact d-block ">
-              {NavLeng[languageChange].connection}
+          <div className="d-flex align-items-center" style={{ gap: "30px" }}>
+            <Link to="/">
+              <img
+                className="logo"
+                src={Logo}
+                width="65"
+                height="64"
+                alt="logo"
+              />
             </Link>
 
-            <select
-              className="select-two form-select"
-              name="social"
-              id="social"
-              onChange={jumpLink}
-            >
-              <option selected value="socials">
-                {NavLeng[languageChange].set}
-              </option>
-              <option value="https://t.me/dachi_v_gorax">Telegram</option>
-              <option value="https://facebook.com">Facebook</option>
-              <option value="https://instagram.com">Instagram</option>
-              <option value="https://youtube.com">Youtube</option>
-            </select>
+            <div className="navs align-items-center">
+              <Link to="tel:+9981002314" className="contact d-block ">
+                {NavLeng[languageChange].connection}
+              </Link>
 
-            <select
-              className="select-three"
-              name="language"
-              onChange={toggleLanguage}
-            >
-              {language.data?.length &&
-                language.data.map((e) => {
-                  if (e.code === defaultLang) {
+              <select
+                className="select-two form-select"
+                name="social"
+                id="social"
+                onChange={jumpLink}
+              >
+                <option selected value="socials">
+                  {NavLeng[languageChange].set}
+                </option>
+                <option value="https://t.me/dachi_v_gorax">Telegram</option>
+                <option value="https://facebook.com">Facebook</option>
+                <option value="https://instagram.com">Instagram</option>
+                <option value="https://youtube.com">Youtube</option>
+              </select>
+
+              <select
+                className="select-three"
+                name="language"
+                onChange={toggleLanguage}
+              >
+                {language.data?.length &&
+                  language.data.map((e) => {
+                    if (e.code === defaultLang) {
+                      return (
+                        <option key={e.id} selected value={e.code}>
+                          {e.code}
+                        </option>
+                      );
+                    }
                     return (
-                      <option key={e.id} selected value={e.code}>
+                      <option key={e.id} value={e.code}>
                         {e.code}
                       </option>
                     );
-                  }
-                  return (
-                    <option key={e.id} value={e.code}>
-                      {e.code}
-                    </option>
-                  );
-                })}
-            </select>
+                  })}
+              </select>
+            </div>
           </div>
           <div className="icons">
             <Link to="/home/favorite" className="heart">

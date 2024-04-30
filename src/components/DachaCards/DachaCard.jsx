@@ -17,8 +17,6 @@ const DachaCard = (props) => {
     (e) => e.isMainImage === true
   ).image;
 
-  const liked = [];
-
   const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("accessToken");
@@ -51,7 +49,7 @@ const DachaCard = (props) => {
         <LazyLoadImage
           className="main-img-dacha"
           src={`${IMG_BASE_URL}${mainImage}`}
-          width="326"
+          width="300"
           height="278"
           alt="dacha"
           effect="blur"
