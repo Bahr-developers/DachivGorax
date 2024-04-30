@@ -74,9 +74,6 @@
     width: 50px;
     font-size: 9px;
   }
-  .text-notif {
-    font-size: 11px;
-  }
   .btn-notif {
     width: 85px;
     font-size: 12px;
@@ -92,7 +89,27 @@
     z-index: 2;
   }
 }
+.NotificationTime {
+  font-size: 14px;
+}
+
+.notifBtn {
+  background: rgb(45, 164, 45);
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
 @media only screen and (max-width: 390px) {
+  .notifBtn {
+    padding: 2px 5px;
+    font-size: 12px;
+  }
+  .NotificationTime {
+    font-size: 12px;
+  }
   .modal-natif-dialog {
     position: absolute;
     margin-left: -200px;

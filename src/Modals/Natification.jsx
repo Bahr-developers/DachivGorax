@@ -60,20 +60,34 @@ function Natification() {
             <div className="modal-body">
               {notification?.data?.length &&
                 notification.data.map((mes) => {
+                  const time = mes?.createdAt.split("T");
                   return (
                     <div
                       className="d-flex justify-content-between  align-items-center"
                       key={mes.id}
                     >
-                      <p className="text-notif w-75">{mes.message}</p>
-                      {mes.type === "personal" ? (
-                        <span className="pesonal-notif btn text-white d-block btn-sm btn-success">
-                          {mes.type}
-                        </span>
-                      ) : (
-                        ""
-                      )}
-                      <hr />
+                      <div className="w-100">
+                        <p>{mes.message}</p>
+                        <div className="d-flex align-items-center justify-content-between">
+                          <div className="d-flex align-items-center gap-1">
+                            <p className="NotificationTime">{time["0"]}</p>
+                            <p className="NotificationTime">
+                              {time["1"].slice(0, 5)}
+                            </p>
+                          </div>
+                          <div className="d-flex align-items-center gap-1">
+                            <button className="notifBtn">Read</button>
+                            {mes.type === "personal" ? (
+                              <span className="pesonal-notif btn text-white d-block btn-sm btn-success">
+                                {mes.type}
+                              </span>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </div>
+                        <hr />
+                      </div>
                     </div>
                   );
                 })}
@@ -84,7 +98,7 @@ function Natification() {
                 className="btn-notif btn btn-primary"
                 data-bs-dismiss="modal"
               >
-                Understood
+                Read All
               </button>
             </div>
           </div>
