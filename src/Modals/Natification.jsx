@@ -2,18 +2,45 @@ import Bell from "../assets/images/bell.svg";
 import MiniBell from "../assets/images/mini-bell.svg";
 import "./modal.css";
 import { ALL_DATA } from "../Query/get_all";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../Query/query-keys";
+import { notificationUtils } from "../utils/notification.utilis";
+
+import { IoMdDoneAll } from "react-icons/io";
 
 function Natification() {
+  const querClient = useQueryClient();
   const user = JSON.parse(localStorage.getItem("user")) || undefined;
 
-  const notification = ALL_DATA.useNotificationUser(user?.id);
+  const notification = ALL_DATA.useNotificationUser(user?.id)?.data;
 
-  console.log(notification?.data);
+  const notifications = notification?.filter((notif) => notif.status === "new");
+
+  // edit Notification
+  const editNotificationById = useMutation({
+    mutationFn: notificationUtils.patchNatification,
+    onSuccess: () => {
+      querClient.invalidateQueries({ queryKey: [QUERY_KEYS.notification] });
+      console.log("success");
+    },
+    onError: (error) => {
+      console.log(error.message);
+    },
+  });
+
+  // read by id
+  const handleRead = (id) => {
+    editNotificationById.mutate({
+      watchedUserId: user?.id,
+      id: id,
+      status: "seen",
+    });
+  };
 
   return (
     <>
       <button
-        className="btn"
+        className="btn notificationsBtn"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >
@@ -33,8 +60,14 @@ function Natification() {
             alt="bell"
           />
         </div>
+        <p
+          className={`m-0 ${
+            notifications?.length > 0 ? "notifLength" : "d-none"
+          }`}
+        >
+          {notifications?.length > 0 ? notifications.length : ""}
+        </p>
       </button>
-
       <div
         className="modal modal-notification fade modal-natif"
         id="staticBackdrop"
@@ -58,8 +91,8 @@ function Natification() {
               ></button>
             </div>
             <div className="modal-body">
-              {notification?.data?.length &&
-                notification.data.map((mes) => {
+              {notification?.length &&
+                notification.map((mes) => {
                   const time = mes?.createdAt.split("T");
                   return (
                     <div
@@ -70,13 +103,29 @@ function Natification() {
                         <p>{mes.message}</p>
                         <div className="d-flex align-items-center justify-content-between">
                           <div className="d-flex align-items-center gap-1">
-                            <p className="NotificationTime">{time["0"]}</p>
-                            <p className="NotificationTime">
+                            <p className="NotificationTime m-0 text-secondary">
+                              {time["0"]}
+                            </p>
+                            <p className="NotificationTime m-0 text-secondary">
                               {time["1"].slice(0, 5)}
                             </p>
                           </div>
                           <div className="d-flex align-items-center gap-1">
-                            <button className="notifBtn">Read</button>
+                            <button
+                              className={`${
+                                mes.status === "new" ? "notifBtn" : "d-none"
+                              }`}
+                              onClick={() => handleRead(mes.id)}
+                            >
+                              Read
+                            </button>
+                            <span
+                              className={`text-secondary ${
+                                mes.status === "new" ? "d-none" : ""
+                              }`}
+                            >
+                              <IoMdDoneAll size={23} />
+                            </span>
                             {mes.type === "personal" ? (
                               <span className="pesonal-notif btn text-white d-block btn-sm btn-success">
                                 {mes.type}
