@@ -2,9 +2,11 @@ import Bell from "../assets/images/bell.svg";
 import MiniBell from "../assets/images/mini-bell.svg";
 import "./modal.css";
 import { ALL_DATA } from "../Query/get_all";
+import { useLocation } from "react-router-dom";
 
 function Natification() {
   const user = JSON.parse(localStorage.getItem("user")) || undefined;
+  const location = useLocation()
 
   const notification = ALL_DATA.useNotificationUser(user?.id);
 
@@ -14,6 +16,7 @@ function Natification() {
     <>
       <button
         className="btn"
+        style={location.pathname==="/"?{marginRight: "30px"}:{}}
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >
