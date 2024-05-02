@@ -8,8 +8,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { HelmetProvider } from "react-helmet-async";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const quertClient = new QueryClient();
+
 root.render(
   <QueryClientProvider client={quertClient}>
     <BrowserRouter>
