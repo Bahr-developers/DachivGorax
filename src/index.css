@@ -33,9 +33,9 @@ body {
   font-style: normal;
 }
 .container {
-  max-width: 1050px;
-  margin: 0 auto;
-  padding: 0 16px;
+  max-width: 1050px !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
 }
 .swiper {
   z-index: 1 !important;
