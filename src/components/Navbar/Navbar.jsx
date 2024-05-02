@@ -226,30 +226,6 @@ const Navbar = () => {
 
             <div className="d-flex align-items-center">
               <Notification />
-              {/* <Link to={"tel:+998936222222"} className="phoneMobile">
-                <BsTelephoneFill size={18} />
-              </Link> */}
-              {/* <select
-                className="select-three"
-                name="language"
-                onChange={toggleLanguage}
-              >
-                {language.data?.length &&
-                  language.data.map((e) => {
-                    if (e.code === defaultLang) {
-                      return (
-                        <option key={e.id} selected value={e.code}>
-                          {e.code}
-                        </option>
-                      );
-                    }
-                    return (
-                      <option key={e.id} value={e.code}>
-                        {e.code}
-                      </option>
-                    );
-                  })}
-              </select> */}
             </div>
 
             <button
